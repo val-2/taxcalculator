@@ -4,4 +4,5 @@
 - Double.parseDouble(df.format(...)) becomes Math.round and Math.floor
 - Separate class from main one for handling console input
 - No hardcoded contract types in ConsoleInputReader but defined programmatically in a Map in main class for easy extension
+  - Handling this new map in ConsoleInputReader as well to print options and recognize them
 - Class to handle output formatting not made because it would be one line long
