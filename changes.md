@@ -1,8 +1,7 @@
-- Renamed variables for clarity (income -> grossIncome).
-- Contract interface with Civil and Employment implementations.
-- TaxBreakdown as basically dataclass + output string method
-- no reading from console or printing to console in main
-- Double.parseDouble(df.format(...)) -> Math.round and Math.floor
-- Separate class for handling console input
-- No hardcoded contract types in ConsoleInputReader but defined programmatically in a Map
+- Renamed variables for clarity based on the description of the variable printed to console in the original program
+- Contract interface with Civil and Employment implementations
+- TaxBreakdown as basically dataclass + output string method to pass it around the various methods
+- Double.parseDouble(df.format(...)) becomes Math.round and Math.floor
+- Separate class from main one for handling console input
+- No hardcoded contract types in ConsoleInputReader but defined programmatically in a Map in main class for easy extension
 - Class to handle output formatting not made because it would be one line long
