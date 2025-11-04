@@ -3,6 +3,11 @@ package taxcalculator;
 class CivilContract implements Contract {
 
 	@Override
+	public String getName() {
+		return "Civil";
+	}
+
+	@Override
 	public TaxBreakdown calculate(double grossIncome) {
 		double socialSecurityTax = grossIncome * TaxConstants.SOCIAL_SECURITY_RATE;
 		double socialHealthSecurityTax = grossIncome * TaxConstants.SOCIAL_HEALTH_SECURITY_RATE;
@@ -28,7 +33,7 @@ class CivilContract implements Contract {
 				- health9Tax - advancePaidRounded;
 
 		return new TaxBreakdown(
-				"CIVIL",
+				getName(),
 				grossIncome,
 				socialSecurityTax,
 				socialHealthSecurityTax,

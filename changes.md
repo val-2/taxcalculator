@@ -1,5 +1,8 @@
 - Renamed variables for clarity (income -> grossIncome).
 - Contract interface with Civil and Employment implementations.
-- TaxBreakdown as DTO
+- TaxBreakdown as basically dataclass + output string method
 - no reading from console or printing to console in main
-- Double.parseDouble(df.format(...)) -> Math.round
+- Double.parseDouble(df.format(...)) -> Math.round and Math.floor
+- Separate class for handling console input
+- No hardcoded contract types in ConsoleInputReader but defined programmatically in a Map
+- Class to handle output formatting not made because it would be one line long
