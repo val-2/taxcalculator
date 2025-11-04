@@ -1,0 +1,5 @@
+- Renamed variables for clarity (income -> grossIncome).
+- Contract interface with Civil and Employment implementations.
+- TaxBreakdown as DTO
+- no reading from console or printing to console in main
+- Double.parseDouble(df.format(...)) -> Math.round
