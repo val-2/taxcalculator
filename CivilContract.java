@@ -2,6 +2,9 @@ package taxcalculator;
 
 class CivilContract implements Contract {
 
+	static final double TAX_FREE_INCOME = 0.0; // PLN
+	static final double TAX_DEDUCTIBLE_EXPENSES_RATE = 0.20; // 20%
+
 	@Override
 	public String getName() {
 		return "Civil";
@@ -18,8 +21,8 @@ class CivilContract implements Contract {
 		double health9Tax = healthBase * TaxConstants.HEALTH_SECURITY_9_RATE;
 		double health775Tax = healthBase * TaxConstants.HEALTH_SECURITY_775_RATE;
 
-		double taxFree = TaxConstants.CIVIL_TAX_FREE_INCOME;
-		double taxDeductibleExpenses = healthBase * TaxConstants.CIVIL_TAX_DEDUCTIBLE_EXPENSES_RATE;
+		double taxFree = CivilContract.TAX_FREE_INCOME;
+		double taxDeductibleExpenses = healthBase * CivilContract.TAX_DEDUCTIBLE_EXPENSES_RATE;
 		double taxedIncomeBeforeRounding = healthBase - taxDeductibleExpenses;
 		long taxedIncomeRounded = Math.round(Math.floor(taxedIncomeBeforeRounding));
 

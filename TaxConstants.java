@@ -11,11 +11,5 @@ final class TaxConstants {
     static final double HEALTH_SECURITY_9_RATE = 0.09; // 9%
     static final double HEALTH_SECURITY_775_RATE = 0.0775; // 7.75%
 
-    static final double EMPLOYMENT_TAX_DEDUCTIBLE_EXPENSES = 111.25; // PLN
-    static final double CIVIL_TAX_DEDUCTIBLE_EXPENSES_RATE = 0.20; // 20%
-
     static final double ADVANCE_TAX_RATE = 0.18; // 18%
-
-    static final double EXPLOYMENT_TAX_FREE_INCOME = 46.33; // PLN
-    static final double CIVIL_TAX_FREE_INCOME = 0.0; // PLN
 }

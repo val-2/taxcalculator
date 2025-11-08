@@ -28,6 +28,6 @@ public class TaxCalculator {
 	}
 
 	private static void displayResults(TaxBreakdown r) {
-		System.out.println(r.getBreakdown());
+		System.out.println(r.getBreakdownString());
 	}
 }

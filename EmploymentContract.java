@@ -2,6 +2,9 @@ package taxcalculator;
 
 class EmploymentContract implements Contract {
 
+    static final double TAX_FREE_INCOME = 46.33; // PLN
+    static final double TAX_DEDUCTIBLE_EXPENSES = 111.25; // PLN
+
     @Override
     public String getName() {
         return "Employment";
@@ -18,12 +21,12 @@ class EmploymentContract implements Contract {
         double health9Tax = healthBase * TaxConstants.HEALTH_SECURITY_9_RATE;
         double health775Tax = healthBase * TaxConstants.HEALTH_SECURITY_775_RATE;
 
-        double taxDeductibleExpenses = TaxConstants.EMPLOYMENT_TAX_DEDUCTIBLE_EXPENSES;
+        double taxDeductibleExpenses = EmploymentContract.TAX_DEDUCTIBLE_EXPENSES;
         double taxedIncomeBeforeRounding = healthBase - taxDeductibleExpenses;
         long taxedIncomeRounded = Math.round(Math.floor(taxedIncomeBeforeRounding));
 
         double advanceTax = taxedIncomeRounded * TaxConstants.ADVANCE_TAX_RATE;
-        double taxFree = TaxConstants.EXPLOYMENT_TAX_FREE_INCOME;
+        double taxFree = EmploymentContract.TAX_FREE_INCOME;
         double reducedTax = advanceTax - taxFree;
 
         double advancePaid = advanceTax - health775Tax - taxFree;

@@ -27,9 +27,8 @@ public class TaxBreakdown {
         final double netIncome;
 
         static final DecimalFormat TWO_DECIMALS = new DecimalFormat("#.00");
-        static final DecimalFormat NO_DECIMALS = new DecimalFormat("#");
 
-        TaxBreakdown(
+        public TaxBreakdown(
                         String contractLabel,
                         double grossIncome,
                         double socialSecurityTax,
@@ -66,29 +65,47 @@ public class TaxBreakdown {
                 this.netIncome = netIncome;
         }
 
-        public String getBreakdown() {
+        public String getBreakdownString() {
 
                 StringBuilder sb = new StringBuilder();
 
                 sb.append("Contract type: ").append(contractLabel).append("\n");
-                sb.append("Social security tax: ").append(socialSecurityTax).append("\n");
-                sb.append("Health security tax: ").append(socialHealthSecurityTax).append("\n");
-                sb.append("Sickness security tax: ").append(socialSicknessSecurityTax).append("\n");
-                sb.append("Income for calculating health security tax: ").append(TWO_DECIMALS.format(healthBase))
+
+                sb.append("Social security tax: ").append(formatNumber(socialSecurityTax))
                                 .append("\n");
 
-                sb.append("Health security tax 9%: ").append(TWO_DECIMALS.format(health9Tax)).append(" 7.75%: ")
-                                .append(TWO_DECIMALS.format(health775Tax)).append("\n");
-                sb.append("Tax deductible expenses: ").append(taxDeductibleExpenses).append("\n");
-                sb.append("Tax base: ").append(TWO_DECIMALS.format(taxedIncomeBeforeRounding)).append(" | rounded: ")
-                                .append(NO_DECIMALS.format(taxedIncomeRounded)).append("\n");
-                sb.append("Advance tax 18%: ").append(advanceTax).append("\n");
-                sb.append("Tax-free amount: ").append(taxFree).append("\n");
-                sb.append("Reduced tax: ").append(reducedTax).append("\n");
-                sb.append("Already paid advance tax: ").append(TWO_DECIMALS.format(advancePaid)).append(" | rounded: ")
-                                .append(NO_DECIMALS.format(advancePaidRounded)).append("\n");
+                sb.append("Health security tax: ").append(formatNumber(socialHealthSecurityTax))
+                                .append("\n");
 
-                sb.append("Net income: ").append(TWO_DECIMALS.format(netIncome)).append("\n");
+                sb.append("Sickness security tax: ").append(formatNumber(socialSicknessSecurityTax))
+                                .append("\n");
+
+                sb.append("Income for calculating health security tax: ").append(formatNumber(healthBase))
+                                .append("\n");
+
+                sb.append("Health security tax 9%: ").append(formatNumber(health9Tax))
+                                .append(" 7.75%: ").append(formatNumber(health775Tax))
+                                .append("\n");
+
+                sb.append("Tax deductible expenses: ").append(taxDeductibleExpenses).append("\n");
+
+                sb.append("Tax base: ").append(formatNumber(taxedIncomeBeforeRounding))
+                                .append(" | rounded: ").append(taxedIncomeRounded).append("\n");
+
+                sb.append("Advance tax 18%: ").append(advanceTax).append("\n");
+
+                sb.append("Tax-free amount: ").append(taxFree).append("\n");
+
+                sb.append("Reduced tax: ").append(reducedTax).append("\n");
+
+                sb.append("Already paid advance tax: ").append(formatNumber(advancePaid))
+                                .append(" | rounded: ").append(advancePaidRounded).append("\n");
+
+                sb.append("Net income: ").append(formatNumber(netIncome)).append("\n");
                 return sb.toString();
+        }
+
+        public String formatNumber(double number) {
+                return TWO_DECIMALS.format(number);
         }
 }
