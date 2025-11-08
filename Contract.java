@@ -1,7 +1,7 @@
 package taxcalculator;
 
 public interface Contract {
-    String getName();
+    public String getName();
 
-    TaxBreakdown calculate(double grossIncome);
+    public TaxBreakdown calculate(double grossIncome);
 }

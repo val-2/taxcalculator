@@ -20,18 +20,49 @@ public class ConsoleInputReader {
             System.out.print("Enter income: ");
             try {
                 incomeLine = reader.readLine();
-                if (incomeLine == null) {
-                    System.out.println("Incorrect.");
+                if (incomeLine == null || incomeLine.trim().isEmpty()) {
+                    System.out.println("Insert again.");
+                    continue;
                 }
                 grossIncome = Double.parseDouble(incomeLine.trim());
+                if (grossIncome < 0) {
+                    System.out.println("Income cannot be negative.");
+                    continue;
+                }
                 break;
             } catch (NumberFormatException nfe) {
-                System.out.println("Incorrect value.");
+                System.out.println("Invalid value.");
             } catch (IOException ioe) {
-                System.out.println("Incorrect.");
+                System.out.println("Error reading input.");
             }
         }
         return grossIncome;
+    }
+
+    public char readContractType(Map<Character, Contract> contractMap) {
+        String prompt = getContractsString(contractMap);
+
+        char contractType;
+        String typedLine;
+        while (true) {
+            System.out.print(prompt);
+            try {
+                typedLine = reader.readLine();
+                if (typedLine == null || typedLine.trim().isEmpty()) {
+                    System.out.println("Insert again.");
+                    continue;
+                }
+                contractType = typedLine.trim().toUpperCase().charAt(0);
+                if (!contractMap.containsKey(contractType)) {
+                    System.out.println("Unknown type of contract");
+                    continue;
+                }
+                break;
+            } catch (IOException ioe) {
+                System.out.println("Error reading input.");
+            }
+        }
+        return contractType;
     }
 
     public String getContractsString(Map<Character, Contract> contractMap) {
@@ -51,32 +82,6 @@ public class ConsoleInputReader {
 
         return prompt.toString();
 
-    }
-
-    public char readContractType(Map<Character, Contract> contractMap) {
-        String prompt = getContractsString(contractMap);
-
-        char contractType;
-        String typedLine;
-        while (true) {
-            System.out.print(prompt);
-            try {
-                typedLine = reader.readLine();
-                if (typedLine == null || typedLine.trim().isEmpty()) {
-                    System.out.println("Incorrect");
-                    continue;
-                }
-                contractType = typedLine.trim().toUpperCase().charAt(0);
-                if (!contractMap.containsKey(contractType)) {
-                    System.out.println("Unknown type of contract");
-                    continue;
-                }
-                break;
-            } catch (IOException ioe) {
-                System.out.println("Incorrect");
-            }
-        }
-        return contractType;
     }
 
 }

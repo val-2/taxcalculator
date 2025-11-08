@@ -1,6 +1,6 @@
 package taxcalculator;
 
-class CivilContract implements Contract {
+public class CivilContract implements Contract {
 
 	static final double TAX_FREE_INCOME = 0.0; // PLN
 	static final double TAX_DEDUCTIBLE_EXPENSES_RATE = 0.20; // 20%
@@ -24,13 +24,13 @@ class CivilContract implements Contract {
 		double taxFree = CivilContract.TAX_FREE_INCOME;
 		double taxDeductibleExpenses = healthBase * CivilContract.TAX_DEDUCTIBLE_EXPENSES_RATE;
 		double taxedIncomeBeforeRounding = healthBase - taxDeductibleExpenses;
-		long taxedIncomeRounded = Math.round(Math.floor(taxedIncomeBeforeRounding));
+		long taxedIncomeRounded = Math.round(taxedIncomeBeforeRounding);
 
 		double advanceTax = taxedIncomeRounded * TaxConstants.ADVANCE_TAX_RATE;
 		double reducedTax = advanceTax - taxFree;
 
 		double advancePaid = advanceTax - health775Tax - taxFree;
-		long advancePaidRounded = Math.round(Math.floor(advancePaid));
+		long advancePaidRounded = Math.round(advancePaid);
 
 		double netIncome = healthBase - (socialSecurityTax + socialHealthSecurityTax + socialSicknessSecurityTax)
 				- health9Tax - advancePaidRounded;
